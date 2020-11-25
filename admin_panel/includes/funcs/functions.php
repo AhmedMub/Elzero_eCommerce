@@ -14,4 +14,3 @@ function getTitle() {
         echo "Default";
     }
 }
-

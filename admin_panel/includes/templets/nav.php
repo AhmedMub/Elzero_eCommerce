@@ -29,7 +29,7 @@
           <?php echo lang('admin_name');?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="members.php?do=Edit&userId<?php echo $_SESSION['ID'];?>"><?php echo lang('nav_edit');?></a></li>
+            <li><a class="dropdown-item" href="members.php?do=Edit&userId=<?php echo $_SESSION['ID'];?>"><?php echo lang('nav_edit');?></a></li>
             <li><a class="dropdown-item" href="#"><?php echo lang('nav_settings');?></a></li>
             <li><a class="dropdown-item" href="logout.php"><?php echo lang('nav_logout');?></a></li>
           </ul>

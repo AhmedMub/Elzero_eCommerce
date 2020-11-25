@@ -1,0 +1,42 @@
+.navbar-dark {
+  padding: 0;
+  .navbar-brand {
+    color: $navText;
+    font-size: 25px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .navbar-nav {
+    margin: 0;
+    padding-left: 50px;
+    .nav-item {
+      padding: 12px 7px;
+      .nav-link {
+        color: $navText;
+        font-size: 1rem;
+        &:hover {
+          color: $navTextHover;
+        }
+        &:focus {
+          color: $navTextHover;
+        }
+      }
+      .dropdown-menu {
+        border-radius: 0;
+        margin: -1px -75px 0;
+        background-color: $black;
+        padding: 0;
+        a {
+          color: $navText;
+          padding: 12px 1rem;
+          &:last-child {
+            &:hover {
+              color: $black;
+              background-color: $navText;
+            }
+          }
+        }
+      }
+    }
+  }
+}

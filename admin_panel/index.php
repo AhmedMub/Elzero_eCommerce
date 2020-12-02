@@ -30,7 +30,7 @@ include "init.php"; //All files included in the Initialize file
         // If count > 0 this mean the Database contain record about this username 
         if($count > 0) {
             $_SESSION['username'] = $username; //Register a session name
-            $_SESSION['ID'] = $row['UserID']; //data from database;
+            $_SESSION['ID'] = $row['UserID']; //register session id  with the person's userID from DB
             header('location: dashboard.php'); // redirect to dashboard.php
             exit(); //to stop scrip from running
         }

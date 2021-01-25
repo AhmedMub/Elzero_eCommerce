@@ -3,6 +3,13 @@
 Main Colors
 ======================
 */
+.unset-a {
+  text-decoration: none;
+  color: inherit; }
+
+.unset-a:hover {
+  color: inherit; }
+
 form > h2 {
   font-size: 2.5em;
   text-align: center;
@@ -10,9 +17,6 @@ form > h2 {
 
 form input {
   height: 3em; }
-
-form .asterisk {
-  color: red; }
 
 .navbar-dark {
   padding: 0; }

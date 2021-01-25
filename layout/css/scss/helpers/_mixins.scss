@@ -1,0 +1,88 @@
+@mixin noBoxShadow {
+  box-shadow: none;
+}
+%oswaldfont {
+  //myFontSans
+  font-family: "Oswald", sans-serif;
+}
+%myfontPop {
+  font-family: "Poppins", sans-serif;
+}
+
+@mixin catBG($cat) {
+  @if $cat == homes {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+      url("../images/categories/home.jpg") no-repeat;
+    background-size: cover;
+  } @else if $cat == men {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+      url("../images/categories/men.jpg") no-repeat;
+    background-size: cover;
+  } @else if $cat == women {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+      url("../images/categories/women.jpg") no-repeat;
+    background-size: cover;
+  } @else if $cat == mobile {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+      url("../images/categories/mobile.jpg") no-repeat;
+    background-size: cover;
+  } @else if $cat == electronics {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+      url("../images/categories/electronics.jpg") no-repeat;
+    background-size: cover;
+  } @else if $cat == supermarket {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)),
+      url("../images/categories/supermarket.jpg") no-repeat;
+    background-size: cover;
+  }
+}
+
+@mixin cardBtn {
+  border: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  background: $clrbtn;
+  color: $clrbtntx;
+  padding: 11px 13px;
+}
+
+//item colors
+@mixin itemClr {
+  padding: 6px 15px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid $white;
+}
+
+//Media Query
+@mixin media-1600 {
+  @media (max-width: 1600px) {
+    @content;
+  }
+}
+@mixin media-1200 {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
+@mixin media-991 {
+  @media (max-width: 991.98px) {
+    @content;
+  }
+}
+@mixin media-767 {
+  @media (max-width: 767.98px) {
+    @content;
+  }
+}
+@mixin media-575 {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}
+@mixin media-400 {
+  @media (max-width: 400px) {
+    @content;
+  }
+}

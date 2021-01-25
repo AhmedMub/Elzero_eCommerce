@@ -1,0 +1,288 @@
+.disabled-in-profile {
+  //remove upper bar from the profile page
+  display: none !important;
+}
+.header {
+  .navbar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background-color: $navScrolled;
+    position: fixed;
+    width: 100%;
+  }
+}
+.dropdown-menu {
+  top: 189%;
+}
+.profile_heading {
+  position: relative;
+  top: 4rem;
+  height: 8%;
+  background: url("../images/profile-header.jpg") no-repeat;
+  background-size: cover;
+  .heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: inherit;
+    h1 {
+      margin-bottom: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    a {
+      text-transform: capitalize;
+      &:hover {
+        color: $secmainclr;
+      }
+    }
+  }
+}
+.profile {
+  padding-top: 7rem;
+  .left {
+    .icon {
+      margin-top: 10px;
+    }
+    .info-user {
+      text-transform: capitalize;
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+    ul {
+      li {
+        a {
+          font-size: 16px;
+          text-transform: capitalize;
+          &:hover {
+            color: $secmainclr;
+          }
+        }
+      }
+    }
+  }
+  .right {
+    h2 {
+      text-transform: capitalize;
+      margin-bottom: 15px;
+    }
+    .card {
+      button {
+        @include cardBtn;
+        transition: all 0.2s ease-in;
+        font-size: 17px;
+        padding: 12px 27px;
+        &:hover {
+          background: $secmainclr;
+          color: $white;
+        }
+      }
+      .card-body {
+        h5 {
+          font-size: 22px;
+          text-transform: capitalize;
+          margin-bottom: 13px;
+        }
+      }
+      .card-text {
+        font-size: 18px;
+        span {
+          &:first-child {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+.list-group-item {
+  padding: 0.5rem 4px;
+}
+
+.list-group-flush > .list-group-item:last-child {
+  border-width: 0 0 1px;
+}
+.card-body {
+  .card-title {
+    margin-bottom: 15px;
+    a {
+      font-size: 16px;
+      color: $black;
+      text-decoration: none;
+      text-transform: capitalize;
+      &:hover {
+        color: $secmainclr;
+      }
+    }
+  }
+  .price {
+    margin-bottom: 4px;
+    color: $secmainclr;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .reviews {
+    display: block !important;
+    font-size: 15px;
+    color: #ddd;
+  }
+  .cardBtn {
+    a {
+      button {
+        @include cardBtn;
+        transition: all 0.2s ease-in;
+      }
+    }
+    div {
+      display: inline-block;
+      span {
+        position: sticky;
+        z-index: -1;
+        padding: 10px 10px;
+        background: $clrbtn;
+        margin-left: -4rem;
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          background: $secmainclr;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+//card products for my ads
+.card {
+  img {
+    height: 14rem;
+  }
+  .card-body {
+    .card-title {
+      margin-bottom: 15px;
+      a {
+        font-size: 16px;
+        color: $black;
+        text-decoration: none;
+        text-transform: capitalize;
+        &:hover {
+          color: $secmainclr;
+        }
+      }
+    }
+    .price {
+      margin-bottom: 4px;
+      color: $secmainclr;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .reviews {
+      display: block !important;
+      font-size: 15px;
+      color: #ddd;
+    }
+    .cardBtn {
+      a {
+        button {
+          @include cardBtn;
+          padding: 10px 7px;
+          transition: all 0.2s ease-in;
+        }
+      }
+      div {
+        display: inline-block;
+        a {
+          position: sticky;
+          z-index: -1;
+          padding: 10px 10px;
+          background: $clrbtn;
+          margin-left: -4rem;
+          transition: all 0.5s ease-in-out;
+          cursor: pointer;
+          &:hover {
+            background: $secmainclr;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+.activebtn {
+  background-color: $navScrolled !important;
+  color: $white !important;
+}
+.activeIcons {
+  z-index: 1 !important;
+  margin-left: 3px !important;
+}
+.changBtnClr {
+  background-color: $navScrolled !important;
+  color: $white !important;
+  &:hover {
+    background: $secmainclr !important;
+  }
+}
+
+.card-fix-wd {
+  width: 90% !important;
+  top: 14% !important;
+}
+
+.validate_newItem {
+  text-transform: capitalize;
+  color: red;
+  display: none;
+  .validate_correct {
+    color: green !important;
+  }
+}
+
+#createAddError {
+  position: relative;
+  .error-wrapper {
+    display: none;
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%);
+    background-color: rgba(248, 215, 218, 0.9);
+    border: 1px solid #f5c2c7;
+    border-radius: 0.25rem;
+    color: #842029;
+    padding: 12px 70px;
+    text-align: center;
+    margin-top: 6px;
+    text-transform: capitalize;
+  }
+  .error-wrapper-success {
+    @extend .error-wrapper;
+  }
+}
+.info-live {
+  &::before {
+    content: "approved";
+    position: absolute;
+    background-color: rgba(209, 231, 221, 0.9);
+    border-color: #badbcc;
+    color: #0f5132;
+    border-radius: 0.25rem;
+    z-index: 1;
+    font-size: 13px;
+    text-transform: capitalize;
+  }
+}
+.info-notLive {
+  &::before {
+    content: "waiting for approval";
+    position: absolute;
+    background-color: rgba(248, 215, 218, 0.9);
+    border: 1px solid #f5c2c7;
+    border-radius: 0.25rem;
+    color: #842029;
+    z-index: 1;
+    font-size: 13px;
+    text-transform: capitalize;
+  }
+}

@@ -1,0 +1,15 @@
+.unset-a {
+  font-size: 13px;
+  &:hover {
+    color: $white;
+  }
+}
+.totalItems {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.fix-btns {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

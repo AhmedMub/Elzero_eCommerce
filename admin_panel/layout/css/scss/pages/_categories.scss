@@ -1,0 +1,36 @@
+form {
+  > h2 {
+    font-size: 2.5em;
+    text-align: center;
+    padding: 1em 0;
+  }
+  .required {
+    color: red;
+  }
+  .heightFix {
+    height: 37px;
+  }
+}
+.formFix {
+  width: auto;
+  margin: 0;
+  display: inline;
+}
+caption {
+  a {
+    text-decoration: none;
+  }
+  .padgeFix {
+    text-decoration: none;
+    pointer-events: none;
+    &:hover {
+      color: initial;
+    }
+  }
+}
+.warning-fix {
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+}

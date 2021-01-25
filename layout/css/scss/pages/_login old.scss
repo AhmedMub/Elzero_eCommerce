@@ -1,0 +1,226 @@
+.login-up {
+  .screen-overlay {
+    position: fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+      url("../images/slider1.jpg") no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+  .log-container {
+    position: absolute;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1070;
+    #resError {
+      .error-wrapper {
+        display: none;
+        position: absolute;
+        top: 3%;
+        left: 50%;
+        z-index: 2020;
+        transform: translate(-50%, -3%);
+        color: $white;
+        background-color: rgba(248, 215, 218, 0.9);
+        border: 1px solid #f5c2c7;
+        border-radius: 0.25rem;
+        color: #842029;
+        padding: 12px;
+        text-align: center;
+      }
+    }
+
+    .form-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      transition: all 0.6s ease-in-out;
+      form {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 50px;
+        height: 100%;
+        input {
+          &::placeholder {
+            &::first-letter {
+              color: red;
+            }
+          }
+        }
+        .social-container {
+          margin: 20px 0;
+          a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #dddddd;
+            border-radius: 50%;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+            transition: all 0.2s ease-in;
+            &:hover {
+              background-color: $secmainclr;
+              color: $white;
+              border-color: $secmainclr;
+            }
+          }
+        }
+
+        input {
+          background-color: #eee;
+          border: none;
+          padding: 12px 15px;
+          margin: 8px 0;
+          width: 100%;
+          &:last-child {
+            @include button;
+            width: 50%;
+          }
+        }
+        > a {
+          transition: all 0.2s ease-in;
+          &:hover {
+            color: $secmainclr;
+          }
+        }
+      }
+    }
+    .sign-in-container {
+      z-index: 2;
+    }
+    .sign-up-container {
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 100;
+      .overlay {
+        background: #eb5757;
+        background: linear-gradient(to right, #eb5757, #000000) no-repeat 0 0 /
+          cover;
+        color: $white;
+        position: relative;
+        left: -100%;
+        height: 100%;
+        width: 200%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+        .overlay-panel {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 0 40px;
+          text-align: center;
+          top: 0;
+          height: 100%;
+          width: 50%;
+          transform: translateX(0);
+          transition: transform 0.6s ease-in-out;
+          p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+          }
+        }
+        .overlay-right {
+          right: 0;
+          //   transform: translateX(0);
+        }
+        .overlay-left {
+          transform: translateX(-20%);
+        }
+        button {
+          @include button;
+          background-color: transparent;
+          border-color: #fff;
+          transition: all 0.2s ease-in;
+          &:hover {
+            background: $white;
+            color: $secmainclr;
+          }
+        }
+      }
+    }
+  }
+}
+
+a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+//this means in js that Effect of the .sign-in-container that inside .log-container (that has a class of .right-panel-active) this is like a conditions, in order of .sign-in-container to work the the mentioned case must be true witch is .log-container must has .right-panel-active
+//this is to move the sign in to the right
+.log-container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.log-container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+.log-container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+//this is to show the create a new account the other side of the overly
+.log-container.right-panel-active .overlay {
+  transform: translateX(50%) !important;
+}
+
+.log-container.right-panel-active .overlay-left {
+  transform: translateX(0) !important;
+}
+
+.log-container.right-panel-active .overlay-right {
+  transform: translateX(20%) !important;
+}
+
+//this if for succuss message for successful registration
+.error-wrapper-success {
+  background-color: rgba(209, 231, 221, 0.9) !important;
+  border-color: #badbcc !important;
+  color: #0f5132 !important;
+  text-transform: capitalize;
+}

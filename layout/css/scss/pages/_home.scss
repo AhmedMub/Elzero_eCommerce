@@ -1,0 +1,170 @@
+body {
+  height: 4000px;
+  font-family: "Open Sans", sans-serif;
+}
+.carousel-caption {
+  top: 60%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  padding-top: 0;
+  padding-bottom: 0;
+  span {
+    @extend %myfontPop;
+    font-weight: 400;
+    font-size: 27px;
+  }
+  span {
+    &:last-of-type {
+      font-size: 20px;
+    }
+  }
+  h2 {
+    font-size: 4rem;
+    padding: 5px 0;
+    @extend %oswaldfont;
+  }
+}
+
+#navIntersecting {
+  position: absolute;
+  top: 75%;
+}
+
+//this for alerts
+.error-alert {
+  .error-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $white;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .alerts-style {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 100%;
+    font-size: 18px;
+    z-index: 2;
+  }
+}
+
+/*
+--------------------------------------
+start products
+--------------------------------------
+*/
+.card-item-ad {
+  width: 90%;
+  .card-image {
+    &::before {
+      content: "new";
+      text-transform: uppercase;
+      background-color: $secmainclr;
+      color: $white;
+      padding: 3px 10px;
+      position: absolute;
+      top: 16px;
+      margin-left: 15px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+  }
+  .card-body {
+    padding: 1rem 0;
+    .card-title {
+      margin-bottom: 5px;
+      a {
+        font-size: $smFont;
+        color: $black;
+        text-transform: capitalize;
+        outline: none;
+        &:hover {
+          color: $secmainclr;
+        }
+      }
+    }
+    .price {
+      margin-bottom: 4px;
+      color: $secmainclr;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .reviews {
+      display: block !important;
+      font-size: 15px;
+      color: #ddd;
+      span {
+        &:first-child {
+          color: #4f4f4f;
+        }
+        &:last-of-type {
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            color: $secmainclr !important;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .cardBtn {
+      display: flex;
+      justify-content: flex-start;
+      align-items: baseline;
+      flex-wrap: nowrap;
+      margin-top: 10px;
+      a {
+        button {
+          @include cardBtn;
+          transition: all 0.2s ease-in;
+          margin-right: 5px;
+          white-space: nowrap;
+        }
+      }
+      div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+        flex-wrap: nowrap;
+        a {
+          opacity: 0;
+          margin-left: -4rem;
+          padding: 10px 10px;
+          background: $clrbtn;
+          transition: all 0.4s ease-in-out;
+          cursor: pointer;
+          &:hover {
+            background: $secmainclr;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+.activebtn {
+  background-color: $navScrolled !important;
+  color: $white !important;
+}
+.activeIcons {
+  opacity: 1 !important;
+  margin-left: 5px !important;
+}
+.changBtnClr {
+  background-color: $navScrolled !important;
+  color: $white !important;
+  &:hover {
+    background: $secmainclr !important;
+  }
+}
+
+/*
+--------------------------------------
+End products
+--------------------------------------
+*/

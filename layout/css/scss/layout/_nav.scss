@@ -1,0 +1,139 @@
+.header {
+  position: absolute;
+  z-index: 1030;
+  width: 100%;
+  @extend %oswaldfont;
+  .Upper-Bar {
+    .bar-info {
+      color: $white;
+      .left-side-social-icons {
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+        a {
+          margin-right: 18px;
+          cursor: pointer;
+          color: $white;
+          transition: all 0.2s ease-in;
+          &:first-child {
+            &:hover {
+              color: #00b2ff;
+            }
+          }
+          &:nth-child(2) {
+            &:hover {
+              color: #0e76a8;
+            }
+          }
+          &:nth-child(3) {
+            &:hover {
+              color: #3b5998;
+            }
+          }
+          &:nth-child(4) {
+            &:hover {
+              color: #ed088e;
+            }
+          }
+        }
+        h1 {
+          font-size: 17px;
+          line-height: 1.5;
+        }
+      }
+      .right-side {
+        display: flex;
+        justify-content: flex-end;
+        align-items: baseline;
+        font-size: 15px;
+        > a {
+          margin-left: 20px;
+          color: $white;
+          text-decoration: none;
+        }
+        .dropdown {
+          margin-left: 20px;
+          > a {
+            color: $white;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  .logo {
+    img {
+      width: 65%;
+    }
+  }
+}
+.navbar-light .navbar-nav .nav-link {
+  color: $white;
+  border-bottom: 2px solid transparent;
+  font-size: 17px;
+  &:hover {
+    color: $white;
+    border-bottom: 2px solid $white;
+  }
+  &:focus {
+    color: $white;
+  }
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
+}
+.navbar-nav {
+  justify-content: flex-start;
+  align-items: baseline;
+  .forActive {
+    &:first-child {
+      .nav-link {
+        border-bottom: 2px solid $white !important;
+      }
+    }
+  }
+}
+#navscroll {
+  transition: all 0.3s ease-in;
+}
+//nav on scroll
+.scrolling {
+  background: $navScrolled;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1050;
+}
+.upperBarHid {
+  z-index: -1;
+}
+.hOneRed {
+  color: red !important;
+}
+.session-user {
+  > a {
+    color: $white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .dropdown-menu {
+    left: -85%;
+    min-width: 7rem;
+    .dropdown-item {
+      font-size: 17px;
+      transition: all 0.1s ease-in;
+      font-family: "Open Sans", sans-serif;
+      &:hover {
+        color: $secmainclr;
+        background-color: #eee;
+      }
+    }
+  }
+}
+.navbar-brand,
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}

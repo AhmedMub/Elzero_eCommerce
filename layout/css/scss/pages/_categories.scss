@@ -1,0 +1,151 @@
+.headingSec {
+  position: relative;
+  height: 9%;
+  .heading {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -65%);
+    h1 {
+      font-size: 2.7rem;
+      color: $white;
+      text-transform: uppercase;
+      @extend %myfontPop;
+      font-weight: 600;
+    }
+    a {
+      text-align: center;
+      display: block;
+      @extend %myfontPop;
+      text-transform: capitalize;
+      text-decoration: none;
+      span {
+        &:first-child {
+          color: #b7b6b6;
+          i {
+            font-size: 12px;
+          }
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+      span {
+        &:last-child {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.homes {
+  @include catBG(homes);
+}
+.men {
+  @include catBG(men);
+}
+.mobile {
+  @include catBG(mobile);
+}
+.supermarket {
+  @include catBG(supermarket);
+}
+.electronics {
+  @include catBG(electronics);
+}
+.women {
+  @include catBG(women);
+}
+
+.items {
+  padding-top: 3rem;
+  .AllItems_st {
+    .card-item-ad {
+      > a {
+        outline: none;
+      }
+      .card-body {
+        .card-title {
+          margin-bottom: 15px;
+          a {
+            font-size: 16px;
+            color: $black;
+            text-decoration: none;
+            text-transform: capitalize;
+            outline: none;
+            &:hover {
+              color: $secmainclr;
+            }
+          }
+        }
+        .price {
+          margin-bottom: 4px;
+          color: $secmainclr;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        .reviews {
+          display: block !important;
+          font-size: 15px;
+          color: #ddd;
+          margin-bottom: 10px;
+          cursor: pointer;
+          span {
+            &:first-child {
+              font-size: 13px;
+              margin-right: 5px;
+              color: $main;
+            }
+            &:last-child {
+              text-transform: capitalize;
+              transition: all 0.2s ease-in-out;
+              &:hover {
+                color: $secmainclr;
+              }
+            }
+          }
+        }
+        .cardBtn {
+          a {
+            button {
+              @include cardBtn;
+              transition: all 0.2s ease-in;
+            }
+          }
+          div {
+            display: inline-block;
+            a {
+              position: sticky;
+              z-index: -1;
+              padding: 10px 10px;
+              background: $clrbtn;
+              margin-left: -4rem;
+              transition: all 0.5s ease-in-out;
+              cursor: pointer;
+              &:hover {
+                background: $secmainclr;
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.activebtn {
+  background-color: $navScrolled !important;
+  color: $white !important;
+}
+.activeIcons {
+  z-index: 1 !important;
+  margin-left: 3px !important;
+}
+.changBtnClr {
+  background-color: $navScrolled !important;
+  color: $white !important;
+  &:hover {
+    background: $secmainclr !important;
+  }
+}

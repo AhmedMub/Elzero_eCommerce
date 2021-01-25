@@ -1,3 +1,8 @@
+//this is public class for all pages
+.asterisk {
+  color: red;
+}
+// this is index.php
 form {
   > h2 {
     font-size: 20px;
@@ -6,5 +11,118 @@ form {
   margin: 30px auto;
   button {
     width: 300px;
+  }
+  input {
+    height: 3em;
+  }
+}
+.formFix {
+  width: auto;
+  margin: 0;
+  display: inline;
+}
+.heightFix {
+  height: 37px;
+}
+
+//Dashboard
+.card {
+  .icon {
+    i {
+      font-size: 5rem;
+      margin-top: 12px;
+    }
+  }
+  .card-body {
+    h5 {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    > span {
+      a {
+        text-decoration: none;
+        font-size: 3rem;
+        color: $black;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+    .pointer {
+      cursor: pointer;
+    }
+  }
+}
+
+.my-bg-1 {
+  background: #a8ff78;
+  background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);
+  background: linear-gradient(to right, #78ffd6, #a8ff78);
+}
+.my-bg-2 {
+  background: #fc466b;
+  background: -webkit-linear-gradient(to right, #3f5efb, #fc466b);
+  background: linear-gradient(to right, #3f5efb, #fc466b);
+}
+.my-bg-3 {
+  background: #03001e;
+  background: -webkit-linear-gradient(
+    to right,
+    #fdeff9,
+    #ec38bc,
+    #7303c0,
+    #03001e
+  );
+  background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);
+}
+.my-bg-4 {
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+}
+.btn-outline-warning:focus,
+.btn-outline-primary:focus,
+.btn-outline-info:focus,
+.btn-outline-danger:focus,
+.btn-outline-success:focus,
+.btn-warning:focus,
+.btn-primary:focus,
+.btn-info:focus,
+.btn-danger:focus,
+.btn-success:focus,
+.accordion-button:focus {
+  @include noBoxShadow;
+}
+.accordion-button:focus {
+  border: none;
+}
+textarea {
+  resize: none;
+  height: 10rem;
+}
+
+body {
+  height: 3000px;
+}
+.border-bottom {
+  &:last-child {
+    border-bottom: none !important;
+  }
+}
+.noDataMsg {
+  text-align: center;
+  .NoComments {
+    font-size: 12rem;
+    color: $white;
+    font-weight: bold;
+    font-family: "Langar", cursive;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+      0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+      0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+      0 20px 20px rgba(0, 0, 0, 0.15);
+  }
+  span {
+    text-transform: uppercase;
   }
 }

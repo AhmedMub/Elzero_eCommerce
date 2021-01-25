@@ -1,8 +1,12 @@
 <?php
-/*
-    Manage Members page
-=>  You can Add || Edit || delete members from this page
-*/
+/* --------------------------------------
+=========================================
+Page Name - members.php
+
+This page to manage all users => [Add && Edit && Delete && Activate] comments
+=========================================
+---------------------------------------*/
+
 session_start();// never forget to start the session
 
 // pageTitle that working according to a function in functions.php so each page name appears in the title
@@ -12,20 +16,30 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
 
     include "init.php";
     
+    //TODO put icons for all buttons in the project
+
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage'; // this is explained in page.php
 
     //*this is the root of the if 
     if ($do == 'Manage') { //this is the "manage" page that has all users from the Database 
 
+        $query = "";
+
+        // this means if the request is "do=Manage&page=Pending" will activate this $query which going to show the pending users only that has the RegStatus equal to 0
+        // this is called a "Pending" page
+        if (isset($_GET['page']) && $_GET['page'] == "Pending") {
+            $query = "AND RegStatus = 0";
+        }
+
         //show All Users Except the Admin
-        $stmt = $db->prepare("SELECT * FROM users WHERE GroupID != 1");
+        $stmt = $db->prepare("SELECT * FROM users WHERE GroupID != 1 $query"); //$query is activated depend on the above condition
         
         $stmt-> execute();
 
         //Store all fetched Data inside a Variable / fetchAll means that will get all the data
         $rows = $stmt->fetchAll();
+        if (!empty($rows)) {//this will show up if there is no members in the DB to be displayed?>
     
-    ?>
         <div class="container">
             <h2 class="text-center mt-5 mb-5 fs-1">Manage Members</h2>
             <table class="table table-success table-striped table-hover">
@@ -51,9 +65,13 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
                             echo "<td>" . $row['Date'] . "</td>"; // this is the current date for each user created
                             //this is how to make the button go to "Edit" page
                             echo "<td>
-                                      <a href='?do=Edit&userId=" . $row['UserID'] ."' class='btn btn-warning'>Edit</a>
-                                        <a href='?do=Delete&userId=" . $row['UserID'] ."' class='btn btn-danger confirm'>Delete</a>
-                                    </td>";
+                                    <a href='?do=Edit&userId=" . $row['UserID'] ."' class='btn btn-warning'>Edit</a>
+                                    <a href='?do=Delete&userId=" . $row['UserID'] ."' class='btn btn-danger confirm'>Delete</a>";
+                                    //this btn shows only inf the user not Active 
+                                    if ($row['RegStatus'] == 0) {
+                                        echo "<a href='?do=Activate&userId=" . $row['UserID'] ."' class='btn btn-info ml-1'>Activate</a>";
+                                    }
+                            echo "</td>";
                         echo "</tr>";
                     }
                     ?>
@@ -62,7 +80,17 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
 
             <a href='?do=Add' class="btn btn-primary">Add New Member</a>
         </div>
-<?php
+    <?php
+    } else { ?>
+
+        <div class='noDataMsg mt-5'>
+            <h4 class="NoComments">404</h4>
+            <span>no Members found</span>
+            <div class="mt-5"><a href="?do=Add" class="btn btn-info">Add New Member</a></div>
+        </div>
+
+    <?php    
+    }
 // this is the Add page, to understand it's content you've must been created Edit page first, so that has all Explanation
     } elseif($do == 'Add') { ?>
 
@@ -149,7 +177,7 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
             
             if ($check == 1) {
                 
-                $errorMsg = "Username Exists Change It Please";
+                $errorMsg = "Username Already Taken Change It Please";
 
                 homeRedirectV2($errorMsg, "?do=Add");
 
@@ -159,8 +187,16 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
                 //- you have write what's in the VALUES in same as INSERT INTO order.
                 //- then execute the query in form of an array like the below   
                 //-> Date Added in lesson 36, and the now() means that every user will get the current date
-                $stmt = $db->prepare("INSERT INTO users(Username, Password, Email, FullName, Date)
-                                    VALUES (:DBuser, :DBpass, :DBmail, :DBfullname, now())");
+                //the value of the RegStatus will be 1 ONLY if the admin created the user
+                 $stmt = $db->prepare("INSERT INTO users(Username, Password, Email, FullName, RegStatus, Date)
+                                    VALUES (
+                                        :DBuser, 
+                                        :DBpass, 
+                                        :DBmail, 
+                                        :DBfullname,
+                                        1,
+                                        now()
+                                        )");//these are values of the query INSERT INTO
                 $stmt-> execute(array(
                     'DBuser' => $user,
                     'DBpass' => $shaPass, // don't forget to put sha1 variable NOT pass variable
@@ -168,7 +204,7 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
                     'DBfullname' => $fullname
                 ));
                 // Success Message
-                $message = "<div class='alert alert-success'>" . $stmt->rowCount() . " Records Updated" . "</div>";
+                $message = "<div class='alert alert-success'>" . $stmt->rowCount() . " Records Inserted" . "</div>";
 
                 homeRedirectV3($message, "back");
             }
@@ -241,7 +277,7 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
             homeRedirect($errorMsg);
         }
     } elseif ($do == 'Update') { //this is the update page && this page will be responsible for receiving the form updates and push it to the DB ##This is Important 
-        //TODO check if the edit that equal username already exists in the DB 
+        // check if the edit that equal username already exists in the DB 
         echo "<h2 style='text-align: center; margin: 40px 0; font-size: 40px;'>Update Member</h2>";
         echo "<div class='container'>"; //to make inside a bootstrap container
             if ($_SERVER['REQUEST_METHOD'] == "POST") { // these are the data that I received from the edit page created above
@@ -280,14 +316,24 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
 
                 //to check if the validations all correct which going to make array errors is empty then update the DB
                 if (empty($formErrors)) { 
-                //update the DB with the above variables by executing this query blow
-                $stmt = $db->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
-                $stmt->execute(array($user, $mail, $name, $pass, $id));
 
-                // Update succeeded notification:
-                $message = "<p class='container fs-2 alert alert-success'>" . $stmt->rowCount() . " Record Updated</p>";
+                    // check when user edit the username, it is not exists in the DB already
+                    $check = checkItemUpdateFix("*", "users","Username", "UserID", $user, $id);
 
-                homeRedirectV3($message, "back");
+                    if ($check == 0) {
+
+                         //update the DB with the above variables by executing this query blow
+                         $stmt = $db->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ?, Password = ? WHERE UserID = ?");
+                         $stmt->execute(array($user, $mail, $name, $pass, $id));
+ 
+                         // Update succeeded notification:
+                         $message = "<p class='container fs-2 alert alert-success'>" . $stmt->rowCount() . " Record Updated</p>";
+ 
+                         homeRedirectV3($message, "back");
+                    } else {
+                        echo "<div class='alert alert-danger'>Username Already Exists Please Change it</div>";
+                        homeRedirectV4("back");
+                    }
                 }
             } else { //*this error for "do=Update" if someone just typed it will display this error because the user must come from "POST" request
                 echo "Can not enter this page directly";
@@ -296,7 +342,7 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
         echo "</div>";
     } elseif($do == "Delete") { // this is to delete a user from the database
 
-        echo "<h2 style='text-align: center; margin: 40px 0; font-size: 40px;'>Delete Member</h2>";
+        echo "<h2 class='mt-5 mb-4 fs-1 text-center'>Delete Item</h2>";
         echo "<div class='container'>";
 
                 //check for the id -> this code explained in "edit" page
@@ -318,7 +364,7 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
                 if ($count > 0) {
                     
                     //This is how to write the Delete query from the DB
-                    $stmt = $db->prepare("DELETE FROM users WHERE UserID = :DBuser");//TODO replace this query with query function already created
+                    $stmt = $db->prepare("DELETE FROM users WHERE UserID = :DBuser");
 
                     //this to tell the query that: the UserID that have been chosen on the query above is equal the :DBuser that you already created above in the check errors conditions
                     $stmt->bindParam(":DBuser", $userId);
@@ -327,6 +373,7 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
                     $stmt->execute();
 
                     echo "<p class='alert alert-success'>" . $stmt->rowCount() . " Record Deleted" . "</p>";
+
                     homeRedirectV4("back");
             echo "</div>";
 
@@ -335,6 +382,36 @@ if (isset($_SESSION['username'])) { // start the user session so you can brows t
 
             homeRedirect($errorMsg);
         }
+
+    } elseif ($do == "Activate") { // this is Activate page //TODO you should create Deactivate user as well
+        // this for activate the user by change the RegStatus to be 1 insteadof 0
+
+        // check if there is a request is a useId and its a number 
+        $userId = isset($_GET["userId"]) && is_numeric($_GET["userId"]) ? intval($_GET['userId']) : 0;
+
+        $check = checkItem("UserID", "users", $userId);
+
+        echo "<div class='container'>";
+            if ($check > 0) { //explained above
+                
+                echo "<h2 class='mt-5 fs-1 text-center'>Activate Member</h2>";
+
+                //this how to change the RegStatus from the Db
+                $stmt = $db->prepare("UPDATE users SET RegStatus = 1 WHERE UserID = ?");
+
+                $stmt->execute(array($userId));
+
+                $row = $stmt->rowCount();
+
+                echo "<div class='alert alert-success mt-5'>" . $row . " User Activated" . "</div>";
+                homeRedirectV4("back");
+            } else {
+                $errorMsg = "User ID Not Exist";
+
+                homeRedirect($errorMsg);
+                
+            }
+        echo "</div>";
 
     } else { //*if the "do=test" in case someone write anything after do, so this for the page that not exists
         $errorMsg = 'NO Page Called ' . '"' . $_GET['do'] . '"' . "  Dude ";

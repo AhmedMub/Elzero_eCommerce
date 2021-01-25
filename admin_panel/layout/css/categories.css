@@ -1,0 +1,83 @@
+/*
+======================
+Main Colors
+======================
+*/
+.unset-a {
+  text-decoration: none;
+  color: inherit; }
+
+.unset-a:hover {
+  color: inherit; }
+
+.navbar-dark {
+  padding: 0; }
+
+.navbar-dark .navbar-brand {
+  color: yellow;
+  font-size: 25px;
+  padding-top: 0;
+  padding-bottom: 0; }
+
+.navbar-dark .navbar-nav {
+  margin: 0;
+  padding-left: 50px; }
+
+.navbar-dark .navbar-nav .nav-item {
+  padding: 12px 7px; }
+
+.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: yellow;
+  font-size: 1rem; }
+
+.navbar-dark .navbar-nav .nav-item .nav-link:hover {
+  color: #fff; }
+
+.navbar-dark .navbar-nav .nav-item .nav-link:focus {
+  color: #fff; }
+
+.navbar-dark .navbar-nav .nav-item .dropdown-menu {
+  border-radius: 0;
+  margin: -1px -75px 0;
+  background-color: #000;
+  padding: 0; }
+
+.navbar-dark .navbar-nav .nav-item .dropdown-menu a {
+  color: yellow;
+  padding: 12px 1rem; }
+
+.navbar-dark .navbar-nav .nav-item .dropdown-menu a:last-child:hover {
+  color: #000;
+  background-color: yellow; }
+
+form > h2 {
+  font-size: 2.5em;
+  text-align: center;
+  padding: 1em 0; }
+
+form .required {
+  color: red; }
+
+form .heightFix {
+  height: 37px; }
+
+.formFix {
+  width: auto;
+  margin: 0;
+  display: inline; }
+
+caption a {
+  text-decoration: none; }
+
+caption .padgeFix {
+  text-decoration: none;
+  pointer-events: none; }
+
+caption .padgeFix:hover {
+  color: initial; }
+
+.warning-fix {
+  color: #fff; }
+
+.warning-fix:hover {
+  color: #fff; }

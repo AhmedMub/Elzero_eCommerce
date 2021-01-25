@@ -1,0 +1,55 @@
+.navbtn {
+  margin-top: 2rem;
+
+  .myBtn {
+    //for the Carousal
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    font-size: $smFont;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background: $white;
+      color: $secmainclr;
+    }
+  }
+}
+
+.navbtntwo {
+  margin-top: 4.3rem;
+
+  .slidetwobtn {
+    @extend .myBtn;
+    background: $navScrolled !important;
+    color: $white !important;
+    border: none !important;
+    &:hover {
+      background: #343434 !important;
+    }
+  }
+}
+
+//login and sign up buttons
+
+@mixin button {
+  border-radius: 20px;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  &:active {
+    transform: scale(0.95);
+  }
+  &:focus {
+    outline: none;
+  }
+}
